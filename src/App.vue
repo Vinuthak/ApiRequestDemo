@@ -29,7 +29,7 @@
 <script setup >
   import axios from 'axios';
   import { reactive, onMounted } from 'vue';
-import Loader from './Components/Loader.vue';
+  
   const destinationObj = reactive({
     destinationList: [],
     isLoading: false
