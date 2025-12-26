@@ -1,24 +1,55 @@
-<template><div>RequestOPedia</div>
-  <hr />
-  <div v-for="user in userObj.users" :key="user.id">
-    <p>{{ user.name }}</p>
-    <p>{{ user.email }}</p>
+<template>
+  <div v-if="destinationObj.isLoading" 
+    class="d-flex justify-content-center p-4">
+    <Loader></Loader>
+  </div>
+  <div class="container p-4 bg-white" v-else>
+    <div>
+      <h1 class="text-success text-center">TravelOPedia</h1>
+    </div>
     <hr />
+    <table class="table table-striped table-light">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Days</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-light" v-for="destination in destinationObj.destinationList" :key="destination.id">
+          <td>{{ destination.name }}</td>
+          <td>{{ destination.days }}</td>
+          <td>{{ destination.price }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script setup >
   import axios from 'axios';
   import { reactive, onMounted } from 'vue';
-  const userObj = reactive({
-    users: []
+import Loader from './Components/Loader.vue';
+  const destinationObj = reactive({
+    destinationList: [],
+    isLoading: false
   });
 
-  onMounted(() => {
+  function loadDestination(){
+    destinationObj.isLoading = true;
     axios.
-      get("https://jsonplaceholder.typicode.com/users").
+      get("http://localhost:3000/destination").
       then((response) => {
-        userObj.users = response.data;
-        console.log(response.data);
+        new Promise((resolve) => setTimeout(resolve,1000)).
+        then(() => {
+          destinationObj.destinationList = response.data;
+          destinationObj.isLoading = false;
+        })
       });
+  }
+
+  onMounted(() => {
+    loadDestination();
   });
 </script>
+

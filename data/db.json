@@ -1,0 +1,32 @@
+{
+    "destination": [
+        {
+            "id": 1,
+            "name": "Bangakok",
+            "days": 7,
+            "funFact": "capital and most populated",
+            "price": 1000
+        },
+        {
+            "id": 2,
+            "name": "Phuket",
+            "days": 5,
+            "funFact": "city in Thailand",
+            "price": 800
+        },
+        {
+            "id": 3,
+            "name": "Pattaya",
+            "days": 3,
+            "funFact": "city in Thailand's east",
+            "price": 800
+        },
+        {
+            "id": 4,
+            "name": "Chiang Mai",
+            "days": 6,
+            "funFact": "city in Thailand's west",
+            "price": 900
+        }
+    ]
+}
